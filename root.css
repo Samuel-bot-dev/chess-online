@@ -1,0 +1,7 @@
+:root {
+    --theme-background-image: url("https://assets-themes.chess.com/image/drtgi/background.jpg");
+    --theme-board-style-coordinate-color-dark: #222;
+    --text-color: #fff;
+    --hover-bg: rgba(255, 255, 255, 0.1);
+  }
+  

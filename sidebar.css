@@ -1,0 +1,274 @@
+/* sidebar.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Variáveis CSS (colocar aqui se este for o arquivo principal para elas) */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2980b9;
+    --text-color: #ecf0f1; /* Cor para textos claros */
+    --text-secondary-color: #000f1f; /* Cor para textos escuros (se precisar) */
+    --sidebar-bg-color: rgba(40, 47, 63, 0.95); /* Fundo da sidebar */
+    --sidebar-hover-bg-color: rgba(60, 67, 83, 0.8); /* Fundo do item LI no hover */
+    --link-hover-bg-color: rgba(80, 87, 103, 0.9); /* Fundo do link no hover */
+    --sidebar-icons: url('https://www.chess.com/bundles/web/images/sprites/nav.3ef76db2.png');
+    /* --theme-background-image: url('path/to/your/background.jpg'); /* Se tiver uma imagem de fundo para o body */
+}
+
+/* Reset Básico para todos os elementos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Estilos do Body - Fundamental para o layout e evitar sobreposição */
+body {
+    display: flex; /* Flex para o layout do body */
+    /* Remova flex-direction, align-items, justify-content se o conteúdo principal for centralizado de outra forma */
+    /* background-image: var(--theme-background-image); */
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
+    height: 100vh; /* Ocupa a altura total da viewport */
+    width: 100vw; /* Ocupa a largura total da viewport */
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+    position: relative; /* Base para elementos posicionados dentro do body */
+    background-color: #f0f0f0; /* Garante um fundo padrão para o body, pode ser sobrescrito pelo style.css */
+}
+
+/* ---------------------------------------------------- */
+/* Estilos do Menu Lateral                            */
+/* ---------------------------------------------------- */
+.menu-lateral {
+    position: fixed; /* Fixo na viewport */
+    top: 0;
+    left: 0; /* Visível por padrão em desktop */
+    width: 300px; /* Largura padrão do menu */
+    height: 100%;
+    background-color: var(--sidebar-bg-color); /* Fundo da sidebar */
+    z-index: 99; /* Z-index: abaixo do logo e botão de menu, mas acima do tabuleiro */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    transition: left 0.3s ease-in-out; /* Transição para o movimento */
+}
+
+.menu-lateral.remove {
+    left: -300px; /* Esconde o menu totalmente para a esquerda */
+}
+
+.menu-lateral ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 100px; /* Espaçamento do topo para os itens */
+}
+
+/* Estilos para os itens da lista (LI) ao passar o mouse */
+.menu-lateral ul li {
+    padding: 15px 30px; /* Padding interno para os itens da lista */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.menu-lateral ul li:hover {
+    background-color: var(--sidebar-hover-bg-color); /* Fundo ao passar o mouse no LI */
+    border-radius: 5px;
+    transform: translateX(10px); /* Efeito de deslize ao passar o mouse */
+}
+
+/* ---------------------------------------------------- */
+/* Estilos para os Anchor (<a>) tags dentro do sidebar */
+/* Para parecerem botões e controlar as cores */
+/* ---------------------------------------------------- */
+.menu-lateral ul li a {
+    display: flex; /* Para alinhar ícone e texto */
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px; /* Padding interno para dar volume de botão */
+    border-radius: 5px; /* Bordas arredondadas de botão */
+    text-decoration: none !important; /* Remove underline - !important para forçar */
+    cursor: pointer; /* Indica clicável */
+
+    /* Cores do texto e fundo para todos os estados do link */
+    color: var(--text-color) !important; /* Cor padrão do texto (não visitado) - !important para forçar */
+    background-color: transparent; /* Fundo transparente por padrão para o "botão" */
+
+    transition: background-color 0.2s ease, color 0.2s ease; /* Transição suave */
+    font-size: 18px; /* Tamanho da fonte */
+    white-space: nowrap; /* Evita que o texto quebre linha */
+}
+
+/* Estado de link visitado - CRUCIAL PARA REMOVER A COR ROXA */
+.menu-lateral ul li a:visited {
+    color: var(--text-color) !important; /* Mantém a cor do texto igual ao padrão - !important para forçar */
+    background-color: transparent; /* Mantém o fundo transparente */
+}
+
+/* Estado de hover no próprio link */
+.menu-lateral ul li a:hover {
+    background-color: var(--link-hover-bg-color); /* Fundo mais distinto ao passar o mouse no link */
+    color: var(--text-color) !important; /* Garante que a cor do texto não mude no hover - !important para forçar */
+}
+
+/* Estado de clique (ativo) no link */
+.menu-lateral ul li a:active {
+    background-color: var(--secondary-color); /* Cor ao clicar/ativar o link */
+    color: white !important; /* Cor do texto ao clicar - !important para forçar */
+}
+
+
+/* Estilos dos Ícones (pseudo-elementos ::before) */
+.menu-lateral ul li a.Aprender::before,
+.menu-lateral ul li a.Problema::before,
+.menu-lateral ul li a.Jogar::before {
+    content: "";
+    background: var(--sidebar-icons);
+    background-size: 15.5rem auto;
+    height: 3rem;
+    width: 3rem;
+    display: block;
+    flex-shrink: 0;
+    margin-inline-end: 1rem;
+    position: relative;
+    z-index: 1; /* Garante que o ícone esteja acima do fundo do item */
+}
+
+.menu-lateral ul li a.Aprender::before { background-position: -2.3rem -15.15rem; }
+.menu-lateral ul li a.Problema::before { background-position: -2.3rem -11.4rem; }
+.menu-lateral ul li a.Jogar::before { background-position: -2.1rem -7.8rem; }
+
+/* Se o texto do link está dentro de um <span> */
+.menu-lateral ul li a span {
+    display: block;
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------- */
+/* Estilos do Logo (botão com imagem)                 */
+/* ---------------------------------------------------- */
+.logo {
+    cursor: pointer;
+    background-color: transparent;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 1001; /* Z-index do logo - O MAIS ALTO */
+    border-radius: 5px;
+    border: none; /* Remover borda padrão de button */
+    padding: 10px 15px; /* Ajuste o padding se precisar */
+    transition: left 0.3s ease-in-out;
+}
+
+.logo img {
+    display: block;
+    width: 190px; /* Largura padrão do logo */
+    margin-bottom: 20px;
+    transform: translateY(-20px);
+}
+
+.logo:hover {
+    background-color: rgba(40, 47, 63, 0.678);
+}
+
+.logo.remove {
+    left: -40px; /* Opcional: move o logo quando a sidebar esconde */
+}
+
+/* ---------------------------------------------------- */
+/* Estilos do Botão do Menu (Hamburguer)              */
+/* ---------------------------------------------------- */
+.botao-menu {
+    display: none; /* Oculto por padrão em desktop */
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    top: 30px;
+    left: 30px;
+    z-index: 1002; /* Z-index do botão - SUPERIOR AO LOGO */
+    cursor: pointer;
+    border: none; /* Remover borda padrão de button */
+    color: goldenrod; /* Cor do ícone */
+}
+
+.botao-menu i { /* Seleciona o ícone Font Awesome */
+    font-size: 24px;
+    color: inherit; /* Herda a cor do pai */
+}
+
+/* Classes de Utilidade (controladas pelo JavaScript) */
+.flex {
+    display: flex !important;
+}
+
+.none {
+    display: none !important;
+}
+
+/* ---------------------------------------------------- */
+/* Media Query para Telas Menores (Mobile)            */
+/* ---------------------------------------------------- */
+@media (max-width: 1019px) {
+
+    /* Menu lateral escondido por padrão em mobile */
+    .menu-lateral {
+        left: -300px;
+        width: 300px; /* Mantém a largura para deslizar */
+        animation: none;
+    }
+
+    .menu-lateral:not(.remove) {
+        left: 0; /* Mostra o menu */
+    }
+
+    /* Oculta os textos dos links em mobile */
+    .menu-lateral ul li a span {
+        display: none;
+    }
+
+    /* Ajuste de padding e centralização para os "botões" em mobile */
+    .menu-lateral ul li a {
+        padding: 10px; /* Padding menor */
+        justify-content: center; /* Centraliza o ícone */
+        gap: 0; /* Remove gap */
+    }
+
+    /* Ajuste de tamanho e posicionamento dos ícones em mobile */
+    .Aprender::before,
+    .Problema::before,
+    .Jogar::before {
+        width: 3.5rem;
+        height: 3.5rem;
+        display: block;
+        margin: 0 auto;
+        background-position: center;
+    }
+
+    /* Centraliza o item da lista (LI) em mobile */
+    .menu-lateral ul li {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    /* Ajuste para o logo em mobile */
+    .logo { /* Alvo o botão logo, não a imagem diretamente */
+        position: fixed; /* Mantenha fixed */
+        left: 80px; /* Ajuste a posição do logo */
+        top: 20px;
+        padding: 5px; /* Reduz padding se o logo for menor */
+        z-index: 1001; /* Garante que o logo esteja acima da sidebar */
+    }
+    .logo img {
+        width: 60px; /* Largura menor para o logo em mobile */
+        transform: none; /* Remove transform de desktop */
+    }
+
+    /* Botão do menu visível e posicionado em mobile */
+    .botao-menu {
+        display: flex; /* Mostra o botão */
+        position: fixed;
+        left: 30px;
+        top: 30px;
+        z-index: 1002; /* Garante que o botão esteja acima de tudo */
+    }
+}

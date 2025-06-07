@@ -1,0 +1,8 @@
+{
+    "pawnPiece" : "pawn", 
+    "rookPiece" : "rook", 
+    "knightPiece" : "knight", 
+    "bishopPiece" : "bishop", 
+    "queenPiece" : "queen", 
+    "kingPiece" : "king"
+}

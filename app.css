@@ -1,0 +1,202 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    list-style: none;
+  }
+  
+  body {
+    padding-top: 70px; /* Espaço pro header fixo */
+    overflow-x: hidden;
+    background: var(--theme-background-image) center/cover no-repeat fixed;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    line-height: 1.83;
+  }
+  
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: var(--theme-board-style-coordinate-color-dark);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+  }
+  
+  header img {
+    width: 180px;
+  }
+  
+  header nav ul {
+    display: flex;
+    gap: 20px;
+  }
+  
+  header nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  header nav ul li a:hover {
+    background-color: var(--hover-bg);
+  }
+  
+  section {
+    min-height: calc(100vh - 70px);
+    padding: 1rem;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  
+  section .componentes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.6rem;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-padding: 1rem;
+    scroll-behavior: smooth;
+    user-select: none;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .coluna {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 250px;
+    scroll-snap-align: start;
+  }
+  
+  .coluna:hover {
+    background-color: rgba(255,255,255,0.15);
+  }
+  
+  .shadownew {
+    box-shadow: 0 0.5rem 0 0 rgba(0, 0, 0, .4);
+    align-items: center;
+    border: none;
+    column-gap: .8rem;
+    display: flex;
+    width: calc(6rem*3);
+    height: 5rem;
+    font-weight: 600;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    padding: 1.2rem 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: hsla(0, 0%, 100%, 0.85);
+    transition: background-color 0.3s ease;
+  }
+  
+  .shadownew:hover {
+    background-color: var(--hover-bg);
+  }
+  
+  .iconchess {
+    height: 3rem;
+    width: 3rem;
+    transform: translateY(-1rem) scale(0.8);
+  }
+  
+  .newpartida .iconchess::before {
+    content: url('https://www.chess.com/bundles/web/images/color-icons/playwhite.cea685ba.svg');
+  }
+  
+  .bots .iconchess::before {
+    content: url('https://www.chess.com/bundles/web/images/color-icons/computer.f36f0d84.svg');
+  }
+  
+  .min10 .iconchess::before {
+    content: url('https://www.chess.com/bundles/web/images/color-icons/rapid.d3940770.svg');
+  }
+  
+  .previewWrapper {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    height: 350px;
+  }
+  
+  .preview {
+    background-image: var(--theme-background-image);
+    max-width: 100%;
+    width: 40rem;
+    padding-bottom: 100%;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .previewBottom {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    min-height: 4.5rem;
+    padding: 1.1rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 1024px) {
+    section .componentes {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      transform: translateY(10%);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    header {
+      padding: 10px 15px;
+    }
+    header img {
+      width: 140px;
+    }
+    section .componentes {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      transform: translateY(5%);
+      padding: 1rem 0.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    body {
+      font-size: 1.1rem;
+    }
+    header img {
+      width: 120px;
+    }
+    section .componentes {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      transform: translateY(0);
+      padding: 0.5rem 0.3rem;
+    }
+    .shadownew {
+      width: 100%;
+      height: 4.5rem;
+      font-size: 1.2rem;
+      padding: 1rem;
+    }
+  }
+  
